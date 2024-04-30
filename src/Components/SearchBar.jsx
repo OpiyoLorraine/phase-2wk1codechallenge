@@ -1,17 +1,22 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react';
 
-const Search = () => {
-    const[search,setSearch]=useState("")
+
+function SearchBar({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
-    <div>
-      <form>
-        <label>Search</label>
-        <input onChange={(e)=>setSearch(e.target.value)}></input>
-      </form>
-
-    </div>
-  )
+    <input id='search-bar'
+      type="text"
+      placeholder="Search transactions..."
+      value={searchTerm}
+      onChange={handleChange}
+    />
+  );
 }
 
-export default Search
+export default SearchBar;
